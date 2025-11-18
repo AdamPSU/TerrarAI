@@ -1,0 +1,160 @@
+# --- Visual Studio / C# ---
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Bb]in/
+[Oo]bj/
+[Dd]ebug*/
+[Rr]elease*/
+x64/
+x86/
+build/
+*_i.c
+*_p.c
+*.ilk
+*.meta
+*.obj
+*.o
+*.iobj
+*.ipdb
+*.pdb
+*.pgc
+*.pgd
+*.rsp
+*.sbr
+*.tlb
+*.tli
+*.tlh
+*.tmp
+*.tmp_proj
+*.log
+*.vspscc
+*_i.asm
+
+# Visual Studio coverage files
+*.coverage
+*.coveragexml
+
+# Visual Studio profiler
+*.psess
+*.vsp
+*.vspx
+*.sap
+
+# Visual Studio database files
+*.mdf
+*.ldf
+
+# Visual Studio workspace
+*.code-workspace
+
+# Rider IDE
+.idea/
+
+# DotNet Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+*.dotCover
+
+# NuGet
+*.nupkg
+packages/
+.nuget/
+# Uncomment if you have a global packages folder
+# ~/.nuget/packages
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# Others
+.vscode/
+
+# --- Python ---
+
+# Bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.python-version
+
+# Package installers
+pip-log.txt
+pip-delete-this-directory.txt
+*.egg-info/
+.eggs/
+*.egg
+dist/
+build/
+__pypackages__/
+
+# Poetry
+poetry.lock
+.poetry/
+
+# pipenv
+pipenv.lock
+Pipfile.lock
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pytest
+.pytest_cache/
+
+# Coverage reports
+htmlcov/
+.coverage
+coverage.xml
+.cache
+nosetests.xml
+
+# Sphinx
+docs/_build/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# VSCode Python extension
+.vscode/
+
+# PyCharm
+.idea/
+
+# Python virtual environments (local to PythonAgent)
+PythonAgent/env/
+PythonAgent/.venv/
+PythonAgent/venv/
+PythonAgent/.mypy_cache/
+
+# Uvicorn/gunicorn logs
+*.log
+
+# --- Misc & System ---
+
+# OS generated files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Logs
+*.log
+
+Agent/.env
