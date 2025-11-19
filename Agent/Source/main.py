@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_sock import Sock
-from pipeline import Agent
+from agent import Agent
 import json
 import logging
 
@@ -14,10 +14,12 @@ def agent_websocket(ws):
     while True:
         try:
             # Receive game state from C#
-            game_state = json.loads(ws.receive())
+            game_state = json.loads(ws.receive())            
             
             # Process and send action back
             action = agent.process(game_state)
+            
+            # Send action back to C#
             ws.send(json.dumps(action))
         except Exception as e:
             logger.error(f"Error: {e}")
