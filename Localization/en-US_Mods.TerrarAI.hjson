@@ -1,1 +1,10 @@
 NPCs.AgentNPC.DisplayName: Agent N P C
+
+Buffs: {
+	AgentPetBuff: {
+		DisplayName: Agent Pet Buff
+		Description: Mods.TerrarAI.Buffs.AgentPetBuff.Description
+	}
+}
+
+Projectiles.AgentPet.DisplayName: Agent Pet

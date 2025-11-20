@@ -13,39 +13,26 @@ namespace TerrarAI
 		private ClientWebSocket? _websocket;
 		private CancellationTokenSource? _cancellationTokenSource;
 		private bool _isConnected = false;
-		private bool _npcSpawned = false;
+		private bool _petBuffApplied = false;
 		private const string WS_URL = "ws://127.0.0.1:5000/agent";
 
 		public override void OnWorldLoad()
 		{
 			_ = ConnectAsync();
-			_npcSpawned = false;
+			_petBuffApplied = false;
 		}
 
 		public override void PostUpdateEverything()
 		{
-			if (!_npcSpawned && Main.netMode != 2)
+			if (!_petBuffApplied && Main.netMode != 2)
 			{
 				Player player = Main.LocalPlayer;
 				if (player != null && player.active && player.position.X > 100)
 				{
-					SpawnAgentNPC();
-					_npcSpawned = true;
+					player.AddBuff(ModContent.BuffType<Content.Buffs.AgentPetBuff>(), 3600);
+					_petBuffApplied = true;
 				}
 			}
-		}
-
-		private void SpawnAgentNPC()
-		{
-			Player player = Main.LocalPlayer;
-			if (player == null)
-				return;
-
-			int spawnX = (int)(player.position.X + 100);
-			int spawnY = (int)player.position.Y;
-			int npcType = ModContent.NPCType<Content.NPCs.AgentNPC>();
-
-			NPC.NewNPC(null, spawnX, spawnY, npcType);
 		}
 
 		public override void OnWorldUnload()
