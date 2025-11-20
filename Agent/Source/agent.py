@@ -1,8 +1,9 @@
 from langchain.agents import create_agent
 from langchain.agents.structured_output import ToolStrategy
-from langchain import tool 
+from langchain.tools import tool 
 from dataclasses import dataclass, asdict
 from typing import List
+from dotenv import load_dotenv; load_dotenv()
 
 @dataclass
 class ActionCommand:
@@ -16,7 +17,7 @@ class ResponseFormat:
 
 class Agent:
     def __init__(self):
-        with open("src/prompt.txt", "r") as file:
+        with open("Source/prompt.txt", "r") as file:
             prompt = file.read()
 
         self.agent = create_agent(

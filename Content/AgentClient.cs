@@ -3,6 +3,7 @@ using System.Net.WebSockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Terraria;
 using Terraria.ModLoader;
 
 namespace TerrarAI
@@ -12,11 +13,39 @@ namespace TerrarAI
 		private ClientWebSocket? _websocket;
 		private CancellationTokenSource? _cancellationTokenSource;
 		private bool _isConnected = false;
+		private bool _npcSpawned = false;
 		private const string WS_URL = "ws://127.0.0.1:5000/agent";
 
 		public override void OnWorldLoad()
 		{
 			_ = ConnectAsync();
+			_npcSpawned = false;
+		}
+
+		public override void PostUpdateEverything()
+		{
+			if (!_npcSpawned && Main.netMode != 2)
+			{
+				Player player = Main.LocalPlayer;
+				if (player != null && player.active && player.position.X > 100)
+				{
+					SpawnAgentNPC();
+					_npcSpawned = true;
+				}
+			}
+		}
+
+		private void SpawnAgentNPC()
+		{
+			Player player = Main.LocalPlayer;
+			if (player == null)
+				return;
+
+			int spawnX = (int)(player.position.X + 100);
+			int spawnY = (int)player.position.Y;
+			int npcType = ModContent.NPCType<Content.NPCs.AgentNPC>();
+
+			NPC.NewNPC(null, spawnX, spawnY, npcType);
 		}
 
 		public override void OnWorldUnload()
@@ -33,7 +62,6 @@ namespace TerrarAI
 				
 				await _websocket.ConnectAsync(new Uri(WS_URL), _cancellationTokenSource.Token);
 				_isConnected = true;
-				Mod.Logger.Info("Connected to agent server");
 				
 				_ = ReceiveLoopAsync();
 			}
